@@ -1,0 +1,20 @@
+<tool id="MetaProtTreeMerge" name="MetaProtTreeMerge" version="1.0.0">
+  <description> Merge 2 or more metaproteomics trees in json format</description>
+  <command interpreter="python3">
+    
+ Meta_proteo_tree_merging.py  ${ ' '.join(['"%s"' % x for x in $files]) }    > $output1
+  </command>
+  <inputs>
+    <param format="d3_hierarchy" argument="inputs" name="files" multiple="true" type="data" label="All json to merge" help=""/>
+	</inputs>
+	<outputs>
+		<data name="output1" format="d3_hierarchy"/>
+	</outputs>
+	<requirements>
+	  
+	</requirements> 
+	<tests>
+	</tests>
+	<help>
+	</help>
+</tool>
