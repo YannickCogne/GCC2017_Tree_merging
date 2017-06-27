@@ -33,8 +33,6 @@ def recursparser(data,dico):
         if len(dico[i["id"]]["kids"]):
 #recursive method which allows to search all child of each parents                
             dico=recursparser(i,dico)
-            tot=0
-        
         for k in dico[i["id"]]["kids"]:
             dico[i["id"]]["data"]["count"]+=dico[k]["data"]["count"]
 #incremente peptides count with the count of all kids , for non parents count is self_count and for parent is the sum of first generation child count            
