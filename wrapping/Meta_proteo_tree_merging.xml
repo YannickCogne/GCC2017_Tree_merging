@@ -1,9 +1,11 @@
 <tool id="MetaProtTreeMerge" name="MetaProtTreeMerge" version="1.0.0">
   <description> Merge 2 or more metaproteomics trees in json format</description>
   <command interpreter="python3">
-    
+    <![CDATA[
  Meta_proteo_tree_merging.py  ${ ' '.join(['"%s"' % x for x in $files]) }    > $output1
-  </command>
+
+]]>
+</command>
   <inputs>
     <param format="d3_hierarchy" argument="inputs" name="files" multiple="true" type="data" label="All json to merge" help=""/>
 	</inputs>
@@ -14,6 +16,18 @@
 	  
 	</requirements> 
 	<tests>
+	  <test>
+	    <param name="files" value="Bering_Strait.d3_hierarchy,Chukchi_Sea.d3_hierarchy"  ftype="d3_hierarchy" />
+	    <output name="output1" file="test_Metaprotree2.d3" ftype="d3_hierarchy"/>
+
+	  </test>
+	  <test>
+	    <param name="files" value="Chukchi_Sea.d3_hierarchy , Bering_Strait.d3_hierarchy"  ftype="d3_hierarchy" />
+	    <output name="output1" file="test_Metaprotree.d3" ftype="d3_hierarchy"/>
+
+	  </test>
+	          
+
 	</tests>
 	<help>
 	</help>
