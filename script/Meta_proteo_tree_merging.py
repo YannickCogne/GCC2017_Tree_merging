@@ -56,11 +56,11 @@ def jsoncreator(dico,dicopos,jsonout):
 
     return jsonout    
 
-
+#Need 2 files in input
 if len(sys.argv) >2:
     with open(sys.argv[1]) as data_file:    
         data = json.load(data_file)
-    
+#Create the root    
     dico={}
     dico[data["id"]]={}
     dico[data["id"]]["name"]=data["name"]
@@ -68,7 +68,7 @@ if len(sys.argv) >2:
     dico[data["id"]]["kids"]=set(data["kids"])
     dico=recursparser(data,dico)
 
-    
+#Add into the structure all other information from other files    
     for arg in sys.argv[2:]:
         with open(arg) as data_file:    
             data2 = json.load(data_file)
@@ -76,8 +76,10 @@ if len(sys.argv) >2:
         for kid in data2["kids"]:
             dico[1]["kids"].add(kid)
         dico=recursparser(data2,dico)
+#Self Count for the root
         dico[1]["data"]["count"]=dico[1]["data"]["self_count"]
         for k in dico[1]["kids"]:
+#Count for the root
             dico[1]["data"]["count"]+=dico[k]["data"]["count"]
     
     jsonstr=""
